@@ -3,7 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ApiService } from '../../services/api.service';
-import { UserInterface } from '../../interfaces/UserInterface';
 
 @Component({
   selector: 'app-login',
@@ -24,16 +23,20 @@ export class LoginComponent {
     password: ['', Validators.required],
   });
 
-  // add next & error inside the subscription 
-  // for error handling
   submit() {
     this.apiService.login(this.loginForm.value)
-      .subscribe((response: any) => {
+      .subscribe({
+        next: (response:any) => {
         console.log('response', response);
-
+        this.error = false;
         localStorage.setItem('token', response.user.token);
         this.authService.currentUserSig.set(response.user);
         this.router.navigateByUrl('/');
-      });
+        },
+        error: () => {
+          this.error = true;
+          this.authService.currentUserSig.set(null);
+        },
+      })
   }
 }
