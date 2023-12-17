@@ -1,0 +1,15 @@
+<header>
+    <nav>
+        <ul class="nav-ul">
+            <li><a routerLink="/">Home</a></li>
+            @if(!authService.currentUserSig()?.token){
+            <li><a routerLink="login">Login</a></li>
+            <li><a routerLink="register">Register</a></li>
+            } @else {
+            <li>Hi,{{authService.currentUserSig()?.username}}</li>
+            <li><a routerLink="profile">Profile</a></li>
+            <li><button class="logout-button" (click)="logout()">Logout</button></li>
+            }
+        </ul>
+    </nav>
+</header>

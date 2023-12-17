@@ -1,0 +1,22 @@
+<section>
+    @if(error){
+    <div class="errmsg">Unauthorized</div>
+    }
+    <h1>Sign In</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" autocomplete="off" />
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" autocomplete="off" />
+        <br>
+        <button>Sign In</button>
+        <br>
+    </form>
+    <p>
+        Need an Account?<br>
+        <span className="line">
+            <a routerLink="/register">Sign Up</a>
+        </span>
+    </p>
+</section>

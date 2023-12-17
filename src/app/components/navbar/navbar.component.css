@@ -1,0 +1,16 @@
+.nav-ul {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    line-height: 30px;
+}
+
+.nav-ul > li {
+    margin-right: 10px;
+}
+
+.logout-button {
+    margin-top: 0;
+}
